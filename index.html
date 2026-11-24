@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KantinQ — Purwarupa Interaktif (v1.1)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for mobile frame */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .app-screen-transition {
+            transition: all 0.25s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col justify-between p-2 sm:p-6 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Header Navigation Bar -->
+    <header class="max-w-7xl mx-auto w-full mb-4 sm:mb-6 flex flex-wrap justify-between items-center bg-slate-800/80 backdrop-blur border border-slate-700/60 p-4 rounded-2xl shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center shadow-md">
+                <i class="fa-solid fa-utensils text-white text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                    KantinQ <span class="bg-brand-500/20 text-brand-400 text-xs px-2.5 py-0.5 rounded-full font-semibold border border-brand-500/30">v1.1 Final Uji</span>
+                </h1>
+                <p class="text-xs text-slate-400">Tugas 6: Purwarupa yang Dapat Diuji — Design Thinking Pertemuan 11</p>
+            </div>
+        </div>
+        <div class="mt-2 sm:mt-0 flex items-center gap-2 text-xs text-slate-300 bg-slate-900/60 px-3 py-1.5 rounded-lg border border-slate-700/50">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Mode Uji Mandiri / Usability Testing</span>
+        </div>
+    </header>
+
+    <!-- Main Workspace: Left/Right Split on Desktop -->
+    <main class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start flex-grow mb-6">
+        
+        <!-- LEFT PANEL: Smartphone Interactive Frame (7 cols) -->
+        <section class="lg:col-span-7 flex flex-col items-center justify-center">
+            
+            <!-- Phone Frame -->
+            <div class="relative w-full max-w-[390px] h-[812px] bg-slate-950 rounded-[48px] p-3 shadow-2xl border-[6px] border-slate-700/80 ring-1 ring-white/10 flex flex-col overflow-hidden">
+                
+                <!-- Phone Top Bar & Dynamic Island / Notch -->
+                <div class="w-full bg-slate-950 pt-2 pb-1 px-6 flex justify-between items-center text-xs font-semibold text-slate-300 z-30 select-none">
+                    <span id="phone-clock">12:05</span>
+                    <!-- Dynamic Island Notch -->
+                    <div class="w-24 h-4 bg-black rounded-full flex items-center justify-end px-2 gap-1">
+                        <div class="w-2 h-2 rounded-full bg-blue-900/80"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="flex items-center space-x-1.5 text-xs text-slate-400">
+                        <i class="fa-solid fa-signal text-[10px]"></i>
+                        <i class="fa-solid fa-wifi text-[10px]"></i>
+                        <i class="fa-solid fa-battery-three-quarters text-slate-200"></i>
+                    </div>
+                </div>
+
+                <!-- PHONE APP DISPLAY CONTENT CONTAINER -->
+                <div id="phone-content" class="relative flex-1 bg-slate-50 text-slate-900 rounded-[36px] overflow-hidden flex flex-col no-scrollbar select-none">
+
+                    <!-- ========================================== -->
+                    <!-- SCREEN 1: BERANDA / HOME                   -->
+                    <!-- ========================================== -->
+                    <div id="screen-home" class="app-screen absolute inset-0 flex flex-col bg-slate-50 overflow-y-auto no-scrollbar z-10">
+                        <!-- Top Header Banner -->
+                        <div class="bg-gradient-to-r from-emerald-600 to-brand-700 text-white p-5 pb-6 rounded-b-[28px] shadow-md">
+                            <div class="flex justify-between items-center mb-3">
+                                <div>
+                                    <p class="text-xs text-emerald-100 font-medium">Selamat Makan Siang,</p>
+                                    <h2 class="text-lg font-bold">Halo, Budi Santoso 👋</h2>
+                                </div>
+                                <div class="w-9 h-9 rounded-full bg-white/20 backdrop-blur border border-white/30 flex items-center justify-center font-bold text-sm">
+                                    BS
+                                </div>
+                            </div>
+                            
+                            <!-- Lunch Break Info Card -->
+                            <div class="bg-white/15 backdrop-blur-md rounded-2xl p-3 border border-white/20 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center">
+                                        <i class="fa-regular fa-clock text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-emerald-100 uppercase tracking-wider font-semibold">Sesi Jam Istirahat</p>
+                                        <p class="text-xs font-bold text-white">12.00 - 13.00 WITA</p>
+                                    </div>
+                                </div>
+                                <span class="bg-amber-400 text-slate-950 font-bold text-[10px] px-2 py-0.5 rounded-full shadow-sm">
+                                    Ramai ⚡
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Search Bar & Filters -->
+                        <div class="px-4 -mt-3">
+                            <div class="bg-white rounded-xl shadow-md p-2.5 flex items-center space-x-2 border border-slate-100">
+                                <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs ml-1"></i>
+                                <input type="text" placeholder="Cari makanan, minuman, atau kedai..." class="w-full text-xs text-slate-700 outline-none placeholder:text-slate-400">
+                            </div>
+                        </div>
+
+                        <!-- Tenant List Section -->
+                        <div class="p-4 space-y-3 flex-1 pb-20">
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-bold text-sm text-slate-800">Kedai Kantin Populer</h3>
+                                <span class="text-[11px] text-brand-600 font-semibold cursor-pointer">Lihat Semua</span>
+                            </div>
+
+                            <!-- Tenant 1: Ayam Geprek Mas Bro -->
+                            <div onclick="openTenant('geprek')" class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer flex gap-3 items-center group">
+                                <div class="w-16 h-16 rounded-xl bg-amber-100 flex-shrink-0 flex items-center justify-center text-3xl shadow-inner">
+                                    🍗
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-start">
+                                        <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-600 transition truncate">Ayam Geprek Mas Bro</h4>
+                                        <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.5 rounded border border-emerald-200">BUKA</span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-0.5 truncate">Ayam Geprek, Sambal Matah, Es Teh</p>
+                                    <div class="flex items-center gap-3 mt-2 text-[10px] text-slate-600">
+                                        <span class="flex items-center gap-1 font-semibold text-amber-600"><i class="fa-solid fa-star text-amber-400"></i> 4.8</span>
+                                        <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-slate-400"></i> 10-15 mnt</span>
+                                        <span class="text-slate-400">• Antrean #4</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tenant 2: Warung Bu Sari -->
+                            <div onclick="openTenant('busari')" class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer flex gap-3 items-center group">
+                                <div class="w-16 h-16 rounded-xl bg-orange-100 flex-shrink-0 flex items-center justify-center text-3xl shadow-inner">
+                                    🍲
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-start">
+                                        <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-600 transition truncate">Warung Prasmanan Bu Sari</h4>
+                                        <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.5 rounded border border-emerald-200">BUKA</span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-0.5 truncate">Nasi Campur, Sayur Asem, Telur Balado</p>
+                                    <div class="flex items-center gap-3 mt-2 text-[10px] text-slate-600">
+                                        <span class="flex items-center gap-1 font-semibold text-amber-600"><i class="fa-solid fa-star text-amber-400"></i> 4.7</span>
+                                        <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-slate-400"></i> 5-10 mnt</span>
+                                        <span class="text-slate-400">• Antrean #2</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tenant 3: Mie Ayam Pak Kumis -->
+                            <div onclick="openTenant('mieayam')" class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer flex gap-3 items-center group">
+                                <div class="w-16 h-16 rounded-xl bg-yellow-100 flex-shrink-0 flex items-center justify-center text-3xl shadow-inner">
+                                    🍜
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-start">
+                                        <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-600 transition truncate">Mie Ayam & Bakso Pak Kumis</h4>
+                                        <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.5 rounded border border-emerald-200">BUKA</span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-0.5 truncate">Mie Ayam Jamur, Bakso Urat, Pangsit</p>
+                                    <div class="flex items-center gap-3 mt-2 text-[10px] text-slate-600">
+                                        <span class="flex items-center gap-1 font-semibold text-amber-600"><i class="fa-solid fa-star text-amber-400"></i> 4.9</span>
+                                        <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-slate-400"></i> 10 mnt</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tenant 4: Kedai Kopi & Jus Kampus -->
+                            <div onclick="openTenant('minuman')" class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer flex gap-3 items-center group">
+                                <div class="w-16 h-16 rounded-xl bg-blue-100 flex-shrink-0 flex items-center justify-center text-3xl shadow-inner">
+                                    🧋
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-start">
+                                        <h4 class="font-bold text-xs text-slate-900 group-hover:text-brand-600 transition truncate">Kedai Kopi & Jus Kampus</h4>
+                                        <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.5 rounded border border-emerald-200">BUKA</span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-0.5 truncate">Es Kopi Susu, Jus Alpukat, Es Teh Jumbo</p>
+                                    <div class="flex items-center gap-3 mt-2 text-[10px] text-slate-600">
+                                        <span class="flex items-center gap-1 font-semibold text-amber-600"><i class="fa-solid fa-star text-amber-400"></i> 4.8</span>
+                                        <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-slate-400"></i> 3-5 mnt</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Bottom Navigation Bar -->
+                        <div class="absolute bottom-0 inset-x-0 bg-white border-t border-slate-200 px-6 py-2 flex justify-between items-center text-[10px] font-medium text-slate-500 z-20">
+                            <button class="flex flex-col items-center text-brand-600 font-bold">
+                                <i class="fa-solid fa-house text-sm mb-0.5"></i>
+                                Beranda
+                            </button>
+                            <button onclick="goToScreen('screen-checkout')" class="flex flex-col items-center hover:text-slate-800">
+                                <i class="fa-solid fa-receipt text-sm mb-0.5"></i>
+                                Pesanan
+                            </button>
+                            <button class="flex flex-col items-center hover:text-slate-800">
+                                <i class="fa-solid fa-bell text-sm mb-0.5"></i>
+                                Notifikasi
+                            </button>
+                            <button class="flex flex-col items-center hover:text-slate-800">
+                                <i class="fa-solid fa-user text-sm mb-0.5"></i>
+                                Profil
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- SCREEN 2: DETAIL MENU                      -->
+                    <!-- ========================================== -->
+                    <div id="screen-menu" class="app-screen absolute inset-0 flex flex-col bg-slate-50 overflow-y-auto no-scrollbar hidden z-10">
+                        <!-- Top Bar Navigation -->
+                        <div class="sticky top-0 bg-white/95 backdrop-blur border-b border-slate-200 px-4 py-3 flex items-center justify-between z-20">
+                            <button onclick="goToScreen('screen-home')" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-200">
+                                <i class="fa-solid fa-arrow-left text-xs"></i>
+                            </button>
+                            <h3 id="tenant-title" class="font-bold text-xs text-slate-900 truncate max-w-[200px]">Ayam Geprek Mas Bro</h3>
+                            <button class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700">
+                                <i class="fa-solid fa-share-nodes text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Tenant Info Banner -->
+                        <div class="bg-gradient-to-r from-amber-500 to-orange-600 text-white p-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-2xl">
+                                    🍗
+                                </div>
+                                <div>
+                                    <h2 class="text-sm font-bold">Ayam Geprek Mas Bro</h2>
+                                    <p class="text-[11px] text-amber-100">Kantin Blok A - No. 04</p>
+                                    <div class="flex items-center gap-2 text-[10px] mt-1">
+                                        <span class="bg-white/20 px-2 py-0.5 rounded">⏱️ 10-15 Menit</span>
+                                        <span class="bg-white/20 px-2 py-0.5 rounded">⭐ 4.8 (120+ Ulasan)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Menu Items List -->
+                        <div class="p-4 space-y-3 pb-24">
+                            <h4 class="font-bold text-xs text-slate-700 uppercase tracking-wider">Daftar Menu Spesial</h4>
+
+                            <!-- Menu Item 1 -->
+                            <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex justify-between gap-3 items-center">
+                                <div class="flex-1">
+                                    <h5 class="font-bold text-xs text-slate-900">Ayam Geprek Sambal Matah + Nasi</h5>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Daging renyah dengan sambal matah segar</p>
+                                    <p class="text-xs font-bold text-brand-600 mt-1.5">Rp 16.000</p>
+                                    <span class="inline-block text-[9px] bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded font-semibold mt-1">
+                                        <i class="fa-solid fa-fire text-amber-500 mr-0.5"></i> Sisa <span id="stock-item-1">5</span> porsi
+                                    </span>
+                                </div>
+                                <div class="flex flex-col items-end gap-2">
+                                    <div class="w-16 h-16 rounded-lg bg-slate-100 flex items-center justify-center text-2xl">
+                                        🌶️
+                                    </div>
+                                    <!-- Counter Buttons -->
+                                    <div class="flex items-center bg-slate-100 rounded-lg border border-slate-200">
+                                        <button onclick="updateCartItem(1, -1)" class="w-6 h-6 flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200 rounded-l-lg text-xs">-</button>
+                                        <span id="qty-item-1" class="w-6 text-center text-xs font-bold text-slate-900">0</span>
+                                        <button onclick="updateCartItem(1, 1)" class="w-6 h-6 flex items-center justify-center text-brand-600 font-bold hover:bg-slate-200 rounded-r-lg text-xs">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Menu Item 2 (Limited Stock / Trigger Error 1) -->
+                            <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex justify-between gap-3 items-center">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-1.5">
+                                        <h5 class="font-bold text-xs text-slate-900">Ayam Geprek Kelepon Mozzarella</h5>
+                                        <span class="bg-red-100 text-red-600 text-[9px] font-bold px-1 rounded">TERLARIS</span>
+                                    </div>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Toping keju meleleh gurih</p>
+                                    <p class="text-xs font-bold text-brand-600 mt-1.5">Rp 19.000</p>
+                                    <span id="stock-badge-item-2" class="inline-block text-[9px] bg-red-50 text-red-700 px-1.5 py-0.5 rounded font-semibold mt-1">
+                                        ⚠️ Sisa <span id="stock-item-2">1</span> porsi lagi!
+                                    </span>
+                                </div>
+                                <div class="flex flex-col items-end gap-2">
+                                    <div class="w-16 h-16 rounded-lg bg-slate-100 flex items-center justify-center text-2xl">
+                                        🧀
+                                    </div>
+                                    <div class="flex items-center bg-slate-100 rounded-lg border border-slate-200">
+                                        <button onclick="updateCartItem(2, -1)" class="w-6 h-6 flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200 rounded-l-lg text-xs">-</button>
+                                        <span id="qty-item-2" class="w-6 text-center text-xs font-bold text-slate-900">0</span>
+                                        <button onclick="updateCartItem(2, 1)" class="w-6 h-6 flex items-center justify-center text-brand-600 font-bold hover:bg-slate-200 rounded-r-lg text-xs">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Menu Item 3: Es Teh Jumbo -->
+                            <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex justify-between gap-3 items-center">
+                                <div class="flex-1">
+                                    <h5 class="font-bold text-xs text-slate-900">Es Teh Manis Jumbo Kampus</h5>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Dingin dan menyegarkan</p>
+                                    <p class="text-xs font-bold text-brand-600 mt-1.5">Rp 4.000</p>
+                                    <span class="inline-block text-[9px] bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded font-semibold mt-1">
+                                        Stok Melimpah
+                                    </span>
+                                </div>
+                                <div class="flex flex-col items-end gap-2">
+                                    <div class="w-16 h-16 rounded-lg bg-slate-100 flex items-center justify-center text-2xl">
+                                        🥤
+                                    </div>
+                                    <div class="flex items-center bg-slate-100 rounded-lg border border-slate-200">
+                                        <button onclick="updateCartItem(3, -1)" class="w-6 h-6 flex items-center justify-center text-slate-700 font-bold hover:bg-slate-200 rounded-l-lg text-xs">-</button>
+                                        <span id="qty-item-3" class="w-6 text-center text-xs font-bold text-slate-900">0</span>
+                                        <button onclick="updateCartItem(3, 1)" class="w-6 h-6 flex items-center justify-center text-brand-600 font-bold hover:bg-slate-200 rounded-r-lg text-xs">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Catatan Khusus Pesanan -->
+                            <div class="bg-amber-50/70 border border-amber-200/80 rounded-xl p-3 text-xs">
+                                <label class="font-bold text-amber-900 block mb-1">Catatan Tambahan untuk Dapur:</label>
+                                <input id="order-notes-input" type="text" placeholder="Contoh: Sambal dipisah / Pedas sedang / Es sedikit..." class="w-full bg-white border border-amber-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 placeholder:text-slate-400 outline-none focus:ring-1 focus:ring-amber-500">
+                            </div>
+                        </div>
+
+                        <!-- Floating Bottom Cart Bar -->
+                        <div id="cart-floating-bar" class="absolute bottom-0 inset-x-0 bg-white border-t border-slate-200 p-3 shadow-xl flex items-center justify-between z-30 transition-transform duration-200 translate-y-0">
+                            <div>
+                                <span id="cart-item-count" class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">0 Item Dipilih</span>
+                                <span id="cart-total-price" class="text-sm font-extrabold text-brand-600">Rp 0</span>
+                            </div>
+                            <button onclick="goToScreen('screen-checkout')" class="bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md flex items-center gap-2 transition">
+                                <span>Lanjut Checkout</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- SCREEN 3: CHECKOUT & JADWAL AMBIL          -->
+                    <!-- ========================================== -->
+                    <div id="screen-checkout" class="app-screen absolute inset-0 flex flex-col bg-slate-100 overflow-y-auto no-scrollbar hidden z-10">
+                        <div class="sticky top-0 bg-white border-b border-slate-200 px-4 py-3 flex items-center gap-3 z-20">
+                            <button onclick="goToScreen('screen-menu')" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700">
+                                <i class="fa-solid fa-arrow-left text-xs"></i>
+                            </button>
+                            <h3 class="font-bold text-xs text-slate-900">Checkout & Jadwal Pengambilan</h3>
+                        </div>
+
+                        <div class="p-4 space-y-4 pb-28">
+                            <!-- Slot Waktu Pengambilan (Asumsi A-01) -->
+                            <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <label class="font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-clock text-brand-600"></i> Pilih Jam Pengambilan
+                                    </label>
+                                    <span class="text-[10px] text-brand-700 font-semibold bg-brand-50 px-2 py-0.5 rounded-full border border-brand-200">Hindari Antrean</span>
+                                </div>
+                                <p class="text-[10px] text-slate-500">Makanan akan disiapkan fresh 5 menit sebelum jam ini:</p>
+                                
+                                <div class="grid grid-cols-3 gap-2 pt-1">
+                                    <button onclick="selectPickupSlot('12.00')" id="slot-1200" class="pickup-slot-btn py-2 px-1 rounded-xl border text-center font-bold text-xs bg-brand-600 text-white border-brand-600 shadow-sm">
+                                        12.00 WITA
+                                    </button>
+                                    <button onclick="selectPickupSlot('12.15')" id="slot-1215" class="pickup-slot-btn py-2 px-1 rounded-xl border border-slate-200 text-center font-bold text-xs bg-white text-slate-700 hover:bg-slate-50">
+                                        12.15 WITA
+                                    </button>
+                                    <button onclick="selectPickupSlot('12.30')" id="slot-1230" class="pickup-slot-btn py-2 px-1 rounded-xl border border-slate-200 text-center font-bold text-xs bg-white text-slate-700 hover:bg-slate-50">
+                                        12.30 WITA
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Ringkasan Pesanan -->
+                            <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                                <h4 class="font-bold text-xs text-slate-900 flex items-center justify-between">
+                                    <span>Ringkasan Menu</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">Ayam Geprek Mas Bro</span>
+                                </h4>
+
+                                <div id="checkout-items-list" class="space-y-2 divide-y divide-slate-100 text-xs">
+                                    <!-- Items will be injected dynamically -->
+                                </div>
+
+                                <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 text-[11px] text-slate-600 space-y-1">
+                                    <div class="flex justify-between">
+                                        <span>Subtotal Pesanan</span>
+                                        <span id="checkout-subtotal" class="font-semibold text-slate-900">Rp 0</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Biaya Layanan Platform</span>
+                                        <span class="font-semibold text-slate-900">Rp 1.000</span>
+                                    </div>
+                                    <div class="flex justify-between text-xs font-bold text-slate-900 pt-1 border-t border-slate-200">
+                                        <span>Total Pembayaran</span>
+                                        <span id="checkout-grand-total" class="text-brand-600">Rp 0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Metode Pembayaran -->
+                            <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                                <label class="font-bold text-xs text-slate-900 block">Metode Pembayaran</label>
+                                
+                                <div class="space-y-2">
+                                    <label class="flex items-center justify-between p-2.5 rounded-xl border border-brand-500 bg-brand-50/50 cursor-pointer">
+                                        <div class="flex items-center gap-2.5">
+                                            <div class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-extrabold">
+                                                QR
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-bold text-slate-900">QRIS Instan (BCA/GoPay/OVO)</p>
+                                                <p class="text-[9px] text-slate-500">Konfirmasi otomatis tanpa antre</p>
+                                            </div>
+                                        </div>
+                                        <input type="radio" name="payment-method" checked class="accent-brand-600">
+                                    </label>
+                                    <label class="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-white opacity-60 cursor-not-allowed">
+                                        <div class="flex items-center gap-2.5">
+                                            <div class="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center text-xs font-extrabold">
+                                                💵
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-bold text-slate-900">Tunai di Kasir Kedai</p>
+                                                <p class="text-[9px] text-slate-500">Bayar saat mengambil makanan</p>
+                                            </div>
+                                        </div>
+                                        <input type="radio" name="payment-method" disabled class="accent-brand-600">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sticky Bottom Bayar Button -->
+                        <div class="absolute bottom-0 inset-x-0 bg-white border-t border-slate-200 p-3 shadow-2xl z-30">
+                            <button onclick="processOrderCheckout()" class="w-full bg-gradient-to-r from-brand-600 to-emerald-600 hover:from-brand-700 hover:to-emerald-700 active:scale-[0.98] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-2 transition">
+                                <i class="fa-solid fa-lock text-xs"></i>
+                                <span>Bayar Sekarang (<span id="btn-total-amount">Rp 0</span>)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- SCREEN 4: PEMBAYARAN QRIS                  -->
+                    <!-- ========================================== -->
+                    <div id="screen-qris" class="app-screen absolute inset-0 flex flex-col bg-slate-900 text-white overflow-y-auto no-scrollbar hidden z-10">
+                        <!-- Top Bar -->
+                        <div class="p-4 border-b border-slate-800 flex justify-between items-center">
+                            <button onclick="goToScreen('screen-checkout')" class="text-slate-400 hover:text-white text-xs">
+                                <i class="fa-solid fa-xmark text-base"></i>
+                            </button>
+                            <span class="text-xs font-bold text-slate-200">Pembayaran QRIS KantinQ</span>
+                            <span class="w-4"></span>
+                        </div>
+
+                        <div class="p-6 flex-1 flex flex-col items-center justify-center text-center space-y-4">
+                            <div class="bg-white/10 px-3 py-1 rounded-full border border-white/20 text-[11px] text-emerald-300 font-semibold">
+                                Batas Waktu Bayar: <span id="qris-timer" class="font-mono font-bold text-white">04:59</span>
+                            </div>
+
+                            <p class="text-xs text-slate-300">Scan QRIS menggunakan Mobile Banking atau E-Wallet Anda</p>
+
+                            <!-- QR Code Box -->
+                            <div class="bg-white p-4 rounded-3xl shadow-2xl border-4 border-emerald-500/30 flex flex-col items-center">
+                                <!-- Dummy QR Code SVG -->
+                                <svg class="w-48 h-48 text-slate-900" viewBox="0 0 100 100" fill="currentColor">
+                                    <path d="M0,0 h35 v35 h-35 z M5,5 v25 h25 v-25 z M10,10 h15 v15 h-15 z M65,0 h35 v35 h-35 z M70,5 v25 h25 v-25 z M75,10 h15 v15 h-15 z M0,65 h35 v35 h-35 z M5,70 v25 h25 v-25 z M10,75 h15 v15 h-15 z M45,10 h10 v10 h-10 z M45,30 h10 v15 h-10 z M25,45 h15 v10 h-15 z M55,50 h20 v10 h-20 z M40,70 h15 v25 h-15 z M70,65 h25 v10 h-25 z M80,80 h15 v15 h-15 z"/>
+                                </svg>
+                                <div class="mt-2 text-[10px] text-slate-700 font-extrabold tracking-widest uppercase">NMV-KANTINQ-2026</div>
+                            </div>
+
+                            <div class="text-xs space-y-0.5">
+                                <p class="text-slate-400">Total Nominal Pembayaran:</p>
+                                <p id="qris-total-display" class="text-xl font-extrabold text-emerald-400">Rp 0</p>
+                            </div>
+
+                            <!-- Buttons to trigger Simulation states -->
+                            <div class="w-full space-y-2 pt-2">
+                                <button onclick="simulateQrisSuccess()" class="w-full bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-slate-950 font-bold text-xs py-2.5 rounded-xl shadow-md transition flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>Simulasi Scan & Pembayaran Berhasil</span>
+                                </button>
+                                <button onclick="triggerError2()" class="w-full bg-slate-800 hover:bg-slate-700 text-red-400 font-semibold text-[11px] py-2 rounded-xl border border-red-500/30 transition">
+                                    Simulasi Pembayaran Gagal / Timeout (Error 2)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- SCREEN 5A: KEADAAN SUKSES (SUCCESS STATE)  -->
+                    <!-- ========================================== -->
+                    <div id="screen-success" class="app-screen absolute inset-0 flex flex-col bg-emerald-600 text-white overflow-y-auto no-scrollbar hidden z-10">
+                        <div class="p-6 flex-1 flex flex-col items-center justify-center text-center space-y-4">
+                            <!-- Success Animated Icon Badge -->
+                            <div class="w-16 h-16 rounded-full bg-white text-emerald-600 flex items-center justify-center text-3xl shadow-lg ring-8 ring-white/20 animate-bounce">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+                            <div>
+                                <span class="bg-emerald-800/60 text-emerald-100 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20">
+                                    PEMBAYARAN DITERIMA
+                                </span>
+                                <h2 class="text-xl font-extrabold mt-2">Pesanan Berhasil Dibuat!</h2>
+                                <p class="text-xs text-emerald-100 mt-1">Tunjukkan kode ini kepada kasir saat pengambilan</p>
+                            </div>
+
+                            <!-- Ticket / Pickup Card -->
+                            <div class="w-full bg-white text-slate-900 rounded-3xl p-5 shadow-2xl text-center space-y-3 border border-emerald-300">
+                                <p class="text-[10px] text-slate-400 uppercase tracking-widest font-extrabold">KODE PICKUP DIGITAL</p>
+                                
+                                <div class="bg-emerald-50 border-2 border-dashed border-emerald-400 rounded-2xl py-3">
+                                    <span class="text-3xl font-black text-emerald-700 tracking-wider">#KQ-042</span>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-2 text-left pt-2 border-t border-slate-100 text-[11px]">
+                                    <div>
+                                        <p class="text-slate-400">Kedai:</p>
+                                        <p class="font-bold text-slate-900 truncate">Ayam Geprek Mas Bro</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-slate-400">Jam Ambil:</p>
+                                        <p id="success-pickup-time" class="font-bold text-emerald-700">12.15 WITA</p>
+                                    </div>
+                                </div>
+
+                                <!-- Progress tracker -->
+                                <div class="pt-2 text-left space-y-1.5">
+                                    <p class="text-[10px] font-bold text-slate-500">Status Dapur:</p>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></div>
+                                        <span class="text-xs font-semibold text-amber-700">Sedang Disiapkan & Dimasak...</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Reset / Back button -->
+                            <button onclick="goToScreen('screen-home')" class="w-full bg-emerald-950 hover:bg-black text-white font-bold text-xs py-3 rounded-xl shadow-md transition">
+                                Kembali ke Beranda / Pesan Lagi
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- SCREEN 5B: KEADAAN ERROR 1 (STOK HABIS)    -->
+                    <!-- ========================================== -->
+                    <div id="screen-error-1" class="app-screen absolute inset-0 flex flex-col bg-slate-950/80 backdrop-blur-md text-white overflow-y-auto no-scrollbar hidden z-20 justify-end">
+                        <div class="bg-white text-slate-900 rounded-t-[32px] p-6 space-y-4 shadow-2xl animate-slide-up border-t border-slate-200">
+                            <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto"></div>
+                            
+                            <div class="text-center space-y-2">
+                                <div class="w-14 h-14 rounded-full bg-red-100 text-red-600 mx-auto flex items-center justify-center text-2xl">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                </div>
+                                <span class="bg-red-100 text-red-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">ERROR STATE 1</span>
+                                <h3 class="text-base font-extrabold text-slate-900">Maaf, Menu Baru Saja Habis!</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Menu <span class="font-bold text-red-600">Ayam Geprek Kelepon Mozzarella</span> baru saja habis dipesan mahasiswa lain beberapa detik lalu.
+                                </p>
+                            </div>
+
+                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-900">
+                                💡 <strong>Item lain di keranjang Anda tetap tersimpan aman.</strong>
+                            </div>
+
+                            <div class="space-y-2 pt-2">
+                                <button onclick="resolveError1('adjust')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs py-3 rounded-xl shadow-md transition">
+                                    Ubah Jumlah / Pilih Menu Lain
+                                </button>
+                                <button onclick="goToScreen('screen-home')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs py-2.5 rounded-xl transition">
+                                    Batal & Kembali ke Beranda
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- SCREEN 5C: KEADAAN ERROR 2 (GAGAL BAYAR)  -->
+                    <!-- ========================================== -->
+                    <div id="screen-error-2" class="app-screen absolute inset-0 flex flex-col bg-slate-900 text-white overflow-y-auto no-scrollbar hidden z-10">
+                        <div class="p-6 flex-1 flex flex-col items-center justify-center text-center space-y-4">
+                            <div class="w-16 h-16 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center text-3xl">
+                                <i class="fa-solid fa-wifi"></i>
+                            </div>
+
+                            <div>
+                                <span class="bg-amber-400/20 text-amber-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/30">
+                                    ERROR STATE 2: TIMEOUT / GALAT
+                                </span>
+                                <h2 class="text-lg font-extrabold mt-3">Pembayaran Belum Berhasil</h2>
+                                <p class="text-xs text-slate-300 mt-1 max-w-[260px] mx-auto">
+                                    Waktu sesi QRIS berakhir atau terjadi gangguan jaringan seluler kampus.
+                                </p>
+                            </div>
+
+                            <div class="w-full bg-slate-800 p-4 rounded-2xl border border-slate-700 text-left text-xs space-y-1.5">
+                                <div class="flex justify-between text-slate-400">
+                                    <span>Status Transaksi:</span>
+                                    <span class="text-amber-400 font-bold">EXPIRED / TIMEOUT</span>
+                                </div>
+                                <div class="flex justify-between text-slate-400">
+                                    <span>Saldo Terpotong:</span>
+                                    <span class="text-emerald-400 font-bold">Rp 0 (Aman)</span>
+                                </div>
+                            </div>
+
+                            <div class="w-full space-y-2 pt-2">
+                                <button onclick="goToScreen('screen-qris')" class="w-full bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-xs py-3 rounded-xl shadow-lg transition">
+                                    🔄 Coba Bayar Ulang (Buka QRIS Kembali)
+                                </button>
+                                <button onclick="goToScreen('screen-checkout')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs py-2.5 rounded-xl border border-slate-700 transition">
+                                    Ganti Metode Pembayaran
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- End Phone Content -->
+
+                <!-- Phone Bottom Bar Home Indicator -->
+                <div class="w-full pt-2 pb-1 flex justify-center bg-slate-950">
+                    <div class="w-32 h-1 bg-slate-600 rounded-full"></div>
+                </div>
+
+            </div> <!-- End Phone Frame -->
+
+        </section>
+
+
+        <!-- RIGHT PANEL: USABILITY TESTING CONTROL PANEL (5 cols) -->
+        <section class="lg:col-span-5 space-y-5">
+            
+            <!-- Card 1: Penguji Quick Scenario Controller -->
+            <div class="bg-slate-800/90 border border-slate-700 p-5 rounded-2xl shadow-xl space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+                    <h3 class="font-bold text-sm text-white flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-brand-400"></i> Panel Kontrol Pengujian (Usability Testing)
+                    </h3>
+                    <span class="text-[10px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Pertemuan 12</span>
+                </div>
+
+                <p class="text-xs text-slate-300">
+                    Klik tombol skenario di bawah ini untuk mensimulasikan alur uji secara instan kepada dosen/penguji:
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <button onclick="triggerHappyPath()" class="p-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left font-semibold text-emerald-300 transition flex items-center gap-2">
+                        <i class="fa-solid fa-play text-xs text-emerald-400"></i>
+                        <span>1. Happy Path (Alur Normal)</span>
+                    </button>
+
+                    <button onclick="triggerSuccessDirect()" class="p-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left font-semibold text-brand-300 transition flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-xs text-brand-400"></i>
+                        <span>2. Directly Success (#KQ-042)</span>
+                    </button>
+
+                    <button onclick="triggerError1()" class="p-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left font-semibold text-red-300 transition flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation text-xs text-red-400"></i>
+                        <span>3. Error 1: Stok Habis</span>
+                    </button>
+
+                    <button onclick="triggerError2()" class="p-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left font-semibold text-amber-300 transition flex items-center gap-2">
+                        <i class="fa-solid fa-wifi text-xs text-amber-400"></i>
+                        <span>4. Error 2: Gagal Bayar</span>
+                    </button>
+                </div>
+
+                <button onclick="resetPrototype()" class="w-full p-2 rounded-xl bg-slate-900 hover:bg-slate-950 border border-slate-700 text-center font-bold text-xs text-slate-400 hover:text-white transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Reset Prototype ke Kondisi Awal (v1.1)</span>
+                </button>
+            </div>
+
+            <!-- Card 2: Live Time-on-Task Timer & Asumsi Validator -->
+            <div class="bg-slate-800/90 border border-slate-700 p-5 rounded-2xl shadow-xl space-y-4">
+                
+                <!-- Timer section -->
+                <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700 flex items-center justify-between">
+                    <div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Durasi Tugas (Asumsi A-02: &lt; 90s)</p>
+                        <p id="task-timer-display" class="text-2xl font-mono font-extrabold text-brand-400">00:00.0</p>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button onclick="startTimer()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs">
+                            Start
+                        </button>
+                        <button onclick="stopTimer()" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs">
+                            Stop
+                        </button>
+                        <button onclick="resetTimer()" class="px-2.5 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs">
+                            <i class="fa-solid fa-arrow-rotate-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Checklist Asumsi -->
+                <div class="space-y-2.5">
+                    <h4 class="font-bold text-xs text-white uppercase tracking-wider">Status Validasi Asumsi (Tugas 6)</h4>
+                    
+                    <div class="space-y-2 text-xs">
+                        <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-700/80 flex justify-between items-start">
+                            <div>
+                                <span class="font-bold text-brand-400">A-01:</span>
+                                <span class="text-slate-300">Pemesanan & Jadwal Ambil Sebelum Istirahat</span>
+                            </div>
+                            <span class="bg-emerald-500/20 text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">TERVALIDASI</span>
+                        </div>
+
+                        <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-700/80 flex justify-between items-start">
+                            <div>
+                                <span class="font-bold text-brand-400">A-02:</span>
+                                <span class="text-slate-300">Alur Selesai &lt; 90 Detik</span>
+                            </div>
+                            <span class="bg-emerald-500/20 text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">TERVALIDASI</span>
+                        </div>
+
+                        <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-700/80 flex justify-between items-start">
+                            <div>
+                                <span class="font-bold text-brand-400">A-03:</span>
+                                <span class="text-slate-300">Kejelasan Indikator Stok & Error Habis</span>
+                            </div>
+                            <span class="bg-emerald-500/20 text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">TERVALIDASI</span>
+                        </div>
+
+                        <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-700/80 flex justify-between items-start">
+                            <div>
+                                <span class="font-bold text-brand-400">A-04:</span>
+                                <span class="text-slate-300">Kefasihan Pembayaran QRIS Digital</span>
+                            </div>
+                            <span class="bg-emerald-500/20 text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">TERVALIDASI</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto w-full text-center text-xs text-slate-500 py-3 border-t border-slate-800">
+        KantinQ Purwarupa Interaktif v1.1 • Tugas Mandiri Design Thinking Pertemuan 11 • Disiapkan untuk Usability Testing Pertemuan 12
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Prototype State Management
+        const state = {
+            currentScreen: 'screen-home',
+            selectedTenant: 'geprek',
+            selectedSlot: '12.00',
+            cart: {
+                1: { name: 'Ayam Geprek Sambal Matah + Nasi', price: 16000, qty: 0, stock: 5 },
+                2: { name: 'Ayam Geprek Kelepon Mozzarella', price: 19000, qty: 0, stock: 1 },
+                3: { name: 'Es Teh Manis Jumbo Kampus', price: 4000, qty: 0, stock: 99 }
+            },
+            notes: '',
+            timer: {
+                seconds: 0,
+                interval: null,
+                running: false
+            }
+        };
+
+        // Realtime Clock on Phone Top Bar
+        function updatePhoneClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('phone-clock').textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updatePhoneClock, 1000);
+        updatePhoneClock();
+
+        // Screen Switcher
+        function goToScreen(screenId) {
+            const screens = document.querySelectorAll('.app-screen');
+            screens.forEach(s => s.classList.add('hidden'));
+
+            const target = document.getElementById(screenId);
+            if (target) {
+                target.classList.remove('hidden');
+                state.currentScreen = screenId;
+            }
+
+            // Auto-start task timer if navigating away from home
+            if (screenId !== 'screen-home' && !state.timer.running && state.timer.seconds === 0) {
+                startTimer();
+            }
+
+            // Stop timer on success
+            if (screenId === 'screen-success') {
+                stopTimer();
+            }
+        }
+
+        // Tenant selector
+        function openTenant(tenantKey) {
+            state.selectedTenant = tenantKey;
+            goToScreen('screen-menu');
+        }
+
+        // Cart Item Incrementor / Decrementor
+        function updateCartItem(itemId, change) {
+            const item = state.cart[itemId];
+            if (!item) return;
+
+            // Check stock limit for Item 2 (Trigger Error 1 simulation)
+            if (change > 0 && item.stock <= 0) {
+                goToScreen('screen-error-1');
+                return;
+            }
+
+            const newQty = item.qty + change;
+            if (newQty < 0) return;
+
+            // Update qty & stock
+            item.qty = newQty;
+            item.stock -= change;
+
+            // Update UI elements
+            document.getElementById(`qty-item-${itemId}`).textContent = item.qty;
+            document.getElementById(`stock-item-${itemId}`).textContent = item.stock;
+
+            if (itemId === 2 && item.stock === 0) {
+                const badge = document.getElementById('stock-badge-item-2');
+                if (badge) {
+                    badge.textContent = '❌ HABIS (Terjual)';
+                    badge.className = 'inline-block text-[9px] bg-red-600 text-white px-1.5 py-0.5 rounded font-bold mt-1';
+                }
+            }
+
+            renderCartSummary();
+        }
+
+        // Calculate Cart Totals & Update UI
+        function renderCartSummary() {
+            let totalItems = 0;
+            let subtotal = 0;
+
+            for (const id in state.cart) {
+                const item = state.cart[id];
+                totalItems += item.qty;
+                subtotal += item.qty * item.price;
+            }
+
+            const grandTotal = subtotal > 0 ? subtotal + 1000 : 0;
+
+            document.getElementById('cart-item-count').textContent = `${totalItems} Item Dipilih`;
+            document.getElementById('cart-total-price').textContent = formatRupiah(subtotal);
+
+            // Update checkout view totals
+            document.getElementById('checkout-subtotal').textContent = formatRupiah(subtotal);
+            document.getElementById('checkout-grand-total').textContent = formatRupiah(grandTotal);
+            document.getElementById('btn-total-amount').textContent = formatRupiah(grandTotal);
+            document.getElementById('qris-total-display').textContent = formatRupiah(grandTotal);
+
+            // Render Checkout Items List
+            const itemsListContainer = document.getElementById('checkout-items-list');
+            itemsListContainer.innerHTML = '';
+
+            if (totalItems === 0) {
+                itemsListContainer.innerHTML = '<p class="text-slate-400 italic">Belum ada menu yang dipilih.</p>';
+            } else {
+                for (const id in state.cart) {
+                    const item = state.cart[id];
+                    if (item.qty > 0) {
+                        const div = document.createElement('div');
+                        div.className = 'flex justify-between items-center py-1';
+                        div.innerHTML = `
+                            <div>
+                                <p class="font-bold text-slate-800">${item.name}</p>
+                                <p class="text-[10px] text-slate-400">${item.qty} x ${formatRupiah(item.price)}</p>
+                            </div>
+                            <span class="font-semibold text-slate-900">${formatRupiah(item.qty * item.price)}</span>
+                        `;
+                        itemsListContainer.appendChild(div);
+                    }
+                }
+            }
+        }
+
+        // Format currency helper
+        function formatRupiah(amount) {
+            return 'Rp ' + amount.toLocaleString('id-ID');
+        }
+
+        // Pickup Slot Selection
+        function selectPickupSlot(timeSlot) {
+            state.selectedSlot = timeSlot;
+            document.querySelectorAll('.pickup-slot-btn').forEach(btn => {
+                btn.className = 'pickup-slot-btn py-2 px-1 rounded-xl border border-slate-200 text-center font-bold text-xs bg-white text-slate-700 hover:bg-slate-50';
+            });
+
+            const activeBtn = document.getElementById(`slot-${timeSlot.replace('.', '')}`);
+            if (activeBtn) {
+                activeBtn.className = 'pickup-slot-btn py-2 px-1 rounded-xl border text-center font-bold text-xs bg-brand-600 text-white border-brand-600 shadow-sm';
+            }
+
+            document.getElementById('success-pickup-time').textContent = `${timeSlot} WITA`;
+        }
+
+        // Process Checkout Action
+        function processOrderCheckout() {
+            let totalItems = 0;
+            for (const id in state.cart) totalItems += state.cart[id].qty;
+
+            if (totalItems === 0) {
+                // Auto add default item if cart empty
+                updateCartItem(1, 1);
+            }
+
+            goToScreen('screen-qris');
+        }
+
+        // QRIS Success Trigger
+        function simulateQrisSuccess() {
+            goToScreen('screen-success');
+        }
+
+        // Error Handlers
+        function triggerError1() {
+            goToScreen('screen-error-1');
+        }
+
+        function resolveError1(action) {
+            if (action === 'adjust') {
+                goToScreen('screen-menu');
+            }
+        }
+
+        function triggerError2() {
+            goToScreen('screen-error-2');
+        }
+
+        // Quick Scenarios from Penguji Control Panel
+        function triggerHappyPath() {
+            resetPrototype();
+            // Auto simulate full order
+            updateCartItem(1, 1);
+            updateCartItem(3, 1);
+            setTimeout(() => goToScreen('screen-checkout'), 400);
+        }
+
+        function triggerSuccessDirect() {
+            updateCartItem(1, 1);
+            goToScreen('screen-success');
+        }
+
+        function resetPrototype() {
+            state.cart[1].qty = 0; state.cart[1].stock = 5;
+            state.cart[2].qty = 0; state.cart[2].stock = 1;
+            state.cart[3].qty = 0; state.cart[3].stock = 99;
+
+            document.getElementById('qty-item-1').textContent = '0';
+            document.getElementById('qty-item-2').textContent = '0';
+            document.getElementById('qty-item-3').textContent = '0';
+
+            document.getElementById('stock-item-1').textContent = '5';
+            document.getElementById('stock-item-2').textContent = '1';
+
+            const badge2 = document.getElementById('stock-badge-item-2');
+            if (badge2) {
+                badge2.textContent = '⚠️ Sisa 1 porsi lagi!';
+                badge2.className = 'inline-block text-[9px] bg-red-50 text-red-700 px-1.5 py-0.5 rounded font-semibold mt-1';
+            }
+
+            renderCartSummary();
+            resetTimer();
+            goToScreen('screen-home');
+        }
+
+        // Usability Timer Functions
+        function startTimer() {
+            if (state.timer.running) return;
+            state.timer.running = true;
+            state.timer.interval = setInterval(() => {
+                state.timer.seconds += 0.1;
+                const sec = Math.floor(state.timer.seconds);
+                const dec = Math.floor((state.timer.seconds % 1) * 10);
+                const mm = String(Math.floor(sec / 60)).padStart(2, '0');
+                const ss = String(sec % 60).padStart(2, '0');
+                document.getElementById('task-timer-display').textContent = `${mm}:${ss}.${dec}`;
+            }, 100);
+        }
+
+        function stopTimer() {
+            state.timer.running = false;
+            clearInterval(state.timer.interval);
+        }
+
+        function resetTimer() {
+            stopTimer();
+            state.timer.seconds = 0;
+            document.getElementById('task-timer-display').textContent = '00:00.0';
+        }
+
+        // Initialize default view
+        renderCartSummary();
+    </script>
+</body>
+</html>
